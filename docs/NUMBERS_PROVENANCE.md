@@ -270,7 +270,7 @@ until it is re-locked.
 | v3.36-v3.38 | all twelve figures re-rendered and synced into the document | 12/12 images verified by SHA-256 | `figures/*.png`, `scripts/sync_figures_to_docx.py` |
 
 Capature/ceiling figures, the transfer bar (-1.356) and the protocol bars did not change in
-this span; `scripts/verify_numbers.py` still reproduces all forty of its checks.
+this span; `scripts/verify_numbers.py` still reproduces all **67** of its checks.
 
 ### v3.43 -- the held-out paragraph was rewritten
 

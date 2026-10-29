@@ -10,7 +10,6 @@ repo_v3/
 ├── fetch_datasets.bat          step 0: download + prepare the datasets
 ├── run_all.bat                 step 1: reproduce every number and figure
 ├── run_all_except_VirtualLibrary.bat   same, without the virtual-library step
-├── legacy_check.bat            smoke-test the frozen pipeline in archive/
 ├── hte/params.json            run-wide hyper-parameter overrides (read by hte/params.py)
 ├── LICENSE / LICENSE-DATA      MIT for code; per-source licences for the data
 ├── CITATION.cff / .zenodo.json
@@ -30,7 +29,6 @@ repo_v3/
 | `fetch_datasets.bat` | Licence gate -> downloads AI_RCP, bh-hte-ood, Summit, DoyleHTE, Roche66k -> prepares them (Roche split into 8, Summit merged 385/96, DoyleHTE cut to the 15x20 grid). Optional rxn_yields, local use only. |
 | `run_all.bat` | 11 steps: grid/Table 1 -> stats -> enrichment -> transfer -> protocols -> Table 2 -> section 3.6 -> virtual library -> attribution -> figures -> 63-number gate. Refuses to start when `data/` holds no datasets. |
 | `run_all_except_VirtualLibrary.bat` | The same without the virtual-library step. |
-| `legacy_check.bat` | Loads four datasets through `archive/` and prints their shapes; proves the frozen copy still resolves its data after being moved into a subfolder. |
 | `hte/params.json` | Hyper-parameters exported from the frozen pipeline (`TEST_SIZE`, `RF_N_ESTIMATORS`, `HISTGB_MAX_ITER`, the ensemble-weighting constants) plus `_split` / `_models` / `_encodings` metadata. `hte/params.py` reads it **from `hte/`** (same directory, `PARAMS_JSON = Path(__file__).parent / "params.json"`) and lets it **override the built-in defaults**, so this is the one file you edit to change a knob without touching code. It is never written by the code. It lives inside the package because it is imported together with `params.py`, not at the repository root. |
 | `LICENSE` | MIT, for the code. |
 | `LICENSE-DATA` | Per-source licence table (MIT / Apache-2.0 / CC BY 4.0 / CC BY-NC 4.0 / AAAS Default License), the obligation attached to each, and the preparation each dataset needs. |
@@ -38,6 +36,13 @@ repo_v3/
 | `requirements.txt` | numpy, pandas, scikit-learn, xgboost (`xgboost-cpu` build), scipy, matplotlib, rdkit, pyarrow, openpyxl, seaborn, tqdm, Pillow, torch (CPU wheel recommended). |
 
 ## `data/` - the only files that ship
+
+> `data/col_mappings.csv` also carries a few rows for files that are **not** part of the
+> thirteen-dataset corpus (`(Suzuki-Coupling-ML)…`, which has `corpus: false`, and the two
+> extra `(bh-hte-ood)` exports).  The loader never reads them.  The SMILES columns of every
+> dataset pass through unchanged as `reactant_1_smiles` / `reactant_2_smiles`; they are
+> reported as features but never encoded as categorical slots.
+
 
 | File | Purpose |
 |---|---|
@@ -69,13 +74,13 @@ thread count, and without that the XGBoost grid cells drift.
 | `virtual.py` | Virtual library: enumeration, loading grid, batched prediction, EI. |
 | `rank_real.py` | Route-1 ranking (`generate_figure6_direct_ranking`). |
 
-## `scripts/` - the producers (34 files)
+## `scripts/` - the producers (33 files)
 
 ### Data
 | File | Output |
 |---|---|
 | `fetch_datasets.py` | the datasets themselves (driven by `fetch_datasets.bat`) |
-| `legacy_check.py` | loads 4 datasets through `archive/`, prints shapes |
+| `legacy_check.py` | loads 4 datasets through `archive/` and prints their shapes (run it as `python scripts/legacy_check.py`); proves the frozen copy still resolves its data |
 
 ### Main pipeline (the order `run_all.bat` uses)
 | File | Output |
@@ -104,9 +109,12 @@ thread count, and without that the XGBoost grid cells drift.
 ### Helpers
 | File | Purpose |
 |---|---|
+| `check_env.py` | preflight: verifies every required package, the 13 dataset files and the xgboost build; run first |
+| `pipeline_lock.py` | single-instance lock so two `run_all.bat` runs cannot interleave |
+| `_net_probe.py` | one-request PyPI speed probe used by `setup_env.bat` to pick direct vs mirror |
 | `protocol.py` | shared loader: alias -> file -> slots |
 | `tables.py` | rebuilds the six legacy tables from `archive/` and compares them |
-| `make_checksums.py` | writes `results/checksums.txt` |
+| `make_checksums.py` | optional helper: writes `results/checksums.txt` if you want a local hash manifest (not produced by `run_all.bat`, not shipped) |
 | `make_release.py` | release artefact: keeps the two mapping tables, strips every raw CSV |
 | `sync_figures_to_docx.py` | inserts the 12 figures into a .docx and verifies hashes |
 | `recommend_virtual.py` | condition recommendation tool (`rank-real`, `enumerate`) |
@@ -138,7 +146,7 @@ or all at once (`python tests\run_equivalence.py`).
 ## `docs/` (7 files, index in `docs/README.md`)
 
 `column_semantics.csv`, `reaction_roles.csv`, `NUMBERS_AND_PIPELINE.md`,
-`NUMBERS_PROVENANCE.md`, `figure_reproduction.md`, `RELEASING.md`, `README.md`.
+`NUMBERS_PROVENANCE.md`, `NUMBER_UPDATES_20261029.md`, `RELEASING.md`, `README.md`.
 Licence information lives at the root (`LICENSE`, `LICENSE-DATA`), not here.
 
 ## Generated, never committed

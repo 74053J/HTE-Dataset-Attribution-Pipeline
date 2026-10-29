@@ -5,6 +5,22 @@ set PY=python
 if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
 set PYTHONIOENCODING=utf-8
 
+rem --- keep every cache the run produces INSIDE this folder --------------------
+rem  tempfile/some libraries fall back to the CURRENT DIRECTORY when TEMP is not
+rem  set, which is how attrib_parts_<rand>/ and torchinductor_<user>/ ended up
+rem  next to this file.  Point them all at outputs\cache instead.
+set "CACHE=%~dp0outputs\cache"
+if not exist "%CACHE%" mkdir "%CACHE%" >nul 2>&1
+set "TEMP=%CACHE%\tmp"
+set "TMP=%CACHE%\tmp"
+set "TORCHINDUCTOR_CACHE_DIR=%CACHE%\torchinductor"
+set "TRITON_CACHE_DIR=%CACHE%\triton"
+set "TORCH_HOME=%CACHE%\torch"
+set "MPLCONFIGDIR=%CACHE%\mpl"
+set "NUMBA_CACHE_DIR=%CACHE%\numba"
+set "PYTHONPYCACHEPREFIX=%CACHE%\pycache"
+for %%D in ("%TEMP%" "%TORCHINDUCTOR_CACHE_DIR%" "%TRITON_CACHE_DIR%" "%MPLCONFIGDIR%" "%NUMBA_CACHE_DIR%" "%PYTHONPYCACHEPREFIX%") do if not exist "%%~D" mkdir "%%~D" >nul 2>&1
+
 rem --- preflight 0: environment.  Missing packages used to surface as a bare
 rem     ModuleNotFoundError several minutes into a step; check them first.
 %PY% scripts\check_env.py
@@ -130,6 +146,10 @@ if errorlevel 1 goto :fail
 
 echo.
 call :release_lock
+rem --- sweep anything a library still dropped in this folder --------------------
+for /d %%D in (attrib_parts_* torchinductor_* triton_*) do rd /s /q "%%D" >nul 2>&1
+del /q "tmp*cacert.pem" >nul 2>&1
+del /q "*.tsv" >nul 2>&1
 echo ALL DONE - tables in results\, figures in figures\
 if not defined DSH_NO_PAUSE pause
 exit /b 0
@@ -146,7 +166,12 @@ if not "%CD_LOCK%"=="1" exit /b 0
 %PY% scripts\pipeline_lock.py release
 exit /b 0
 
+
 :fail
+rem --- sweep anything a library still dropped in this folder --------------------
+for /d %%D in (attrib_parts_* torchinductor_* triton_*) do rd /s /q "%%D" >nul 2>&1
+del /q "tmp*cacert.pem" >nul 2>&1
+del /q "*.tsv" >nul 2>&1
 echo.
 echo FAILED - see the messages above
 if not defined DSH_NO_PAUSE pause

@@ -8,6 +8,7 @@ only source and the manuscript supplies the reference constant.
 Run:  python scripts/verify_numbers.py     (exit 0 = every check passes)
 """
 import json
+import argparse
 import sys
 from pathlib import Path
 
@@ -23,10 +24,14 @@ fails = []
 N_CHECKS = [0]   # every check counts itself, so the total is never stale
 
 
+RECORDS: list[tuple[str, str, str, str]] = []
+
+
 def check(name, got, want, tol=5e-3):
     N_CHECKS[0] += 1
     ok = abs(float(got) - float(want)) <= tol
     print("  %-46s got %-10.4f want %-8s %s" % (name, got, want, "OK" if ok else "FAIL"))
+    RECORDS.append((name, "%.4f" % float(got), "%.4g" % float(want), "OK" if ok else "FAIL"))
     if not ok:
         fails.append(name)
 
@@ -35,11 +40,16 @@ def check_int(name, got, want):
     N_CHECKS[0] += 1
     ok = int(got) == int(want)
     print("  %-46s got %-10d want %-8d %s" % (name, int(got), want, "OK" if ok else "FAIL"))
+    RECORDS.append((name, "%d" % int(got), "%d" % int(want), "OK" if ok else "FAIL"))
     if not ok:
         fails.append(name)
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description="recompute every quoted number")
+    ap.add_argument("--tsv", default=None,
+                    help="also write the per-check table to this path (check/now/paper/status)")
+    args = ap.parse_args()
     t1 = pd.read_csv(RES / "table1_v18_final.csv")
     grid = pd.read_csv(RES / "grid13_v18.csv")
     a = pd.read_csv(RES / "rebuilt_attrib12_long_v7.csv")
@@ -192,6 +202,15 @@ def main() -> int:
         print("  (heldout_*.csv missing -- run scripts/build_heldout_acquisition.py)")
 
     print()
+    if args.tsv:
+        import csv as _csv
+        _out = Path(args.tsv)
+        _out.parent.mkdir(parents=True, exist_ok=True)
+        with _out.open("w", newline="", encoding="utf-8") as fh:
+            w = _csv.writer(fh, delimiter="\t")
+            w.writerow(["check", "now", "paper", "status"])
+            w.writerows(RECORDS)
+        print("wrote %s (%d checks)" % (_out, len(RECORDS)))
     if fails:
         print("RESULT: FAILURES: %s" % fails)
         return 1

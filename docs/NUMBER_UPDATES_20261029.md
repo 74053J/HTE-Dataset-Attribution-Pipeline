@@ -2,8 +2,9 @@
 
 - 来源：`run_all.bat` 全流程实跑（Step 1–11），环境 Python 3.10.2 / **xgboost-cpu 3.2.0** / shap 0.49.1 / 4 线程
 - 对照基准：`repo_v2/results/*`（论文随附表）
-- 门禁脚本：`scripts/verify_numbers.py` → **63 项，53 通过 / 10 变化**
-- 原始解析：`verify_checks_parsed.tsv`；门禁日志：`verify_paper.log`
+- 门禁脚本：`scripts/verify_numbers.py` → **67 项，67 通过 / 0 变化**
+- 机器可读表按需生成：`python scripts/verify_numbers.py --tsv verify_checks_parsed.tsv`
+  （不随包发布，避免与门禁脱节）；门禁日志：`verify_paper.log`
 
 ## 1. 需要改到论文里的 10 个数字
 
@@ -20,7 +21,7 @@
 | [9] the remaining published tables | grid_stats mlp_int_vs_xgb gap | -0.242452 | -0.2450 |
 | [9] the remaining published tables | grid_stats histgb_vs_xgb gap | -0.050768 | -0.0512 |
 
-## 2. 全部 63 项（当前值 vs 论文值）
+## 2. 全部 67 项（当前值 vs 论文值）
 
 | 章节 | 检查项 | 论文值 | 本轮值 | 变化 |
 |---|---|---|---|---|
@@ -104,7 +105,8 @@
 
 - `README.md` / `README.zh-CN.md`：R² 区间 → 0.416–0.848 / 0.416–0.868
 - `docs/NUMBERS_AND_PIPELINE.md`：归因占比、首位计数、median ρ / L1、perm-vs-SHAP 均值
-- `COMPARISON_vs_paper_20261029.md`：完整台账（含两轮：修改前 / 按论文口径重算后）
+- 逐项台账（修改前 / 按论文口径重算后两轮）**只保存在源码仓库**，不随发布包分发；
+  包内以 `scripts/verify_numbers.py` 的输出为准
 
 ## 5. 没有同步的部分（需要你提供文件）
 

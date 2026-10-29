@@ -240,8 +240,15 @@ def main(argv=None) -> int:
 
     if args.per_dataset:
         import subprocess
+        import shutil
         import tempfile
-        tmp = Path(tempfile.mkdtemp(prefix="attrib_parts_"))
+        # v30: mkdtemp() with no dir= falls back to the CURRENT DIRECTORY when TEMP/TMP
+        # are not set in the process (Windows has no /tmp), which scattered
+        # attrib_parts_<rand>/ with 13 CSVs next to run_all.bat.  Keep the parts inside
+        # outputs/attrib13 and always remove them.
+        _parts_root = Path("outputs") / "attrib13"
+        _parts_root.mkdir(parents=True, exist_ok=True)
+        tmp = Path(tempfile.mkdtemp(prefix="_parts_", dir=str(_parts_root)))
         parts, failed = [], []
         say("[per-dataset] %d datasets, one subprocess each" % len(CORPUS13))
         for _k, _stem in CORPUS13:
@@ -261,11 +268,13 @@ def main(argv=None) -> int:
             say("[per-dataset] FAILED: %s" % ", ".join(failed))
             return 1
         if not parts:
+            shutil.rmtree(tmp, ignore_errors=True)
             return 1
         merged = pd.concat([pd.read_csv(x) for x in parts], ignore_index=True)
         cells = merged.groupby(["dataset", "model", "encoding"]).ngroups
         say("[per-dataset] merged %d/%d parts, %d rows, %d cells"
             % (len(parts), len(CORPUS13), len(merged), cells))
+        shutil.rmtree(tmp, ignore_errors=True)
         if len(merged) != 1392 or cells != 156:
             # the gate quotes 1392 rows over 156 cells; a short table must not pass silently
             say("[per-dataset] ABORT: expected 1392 rows / 156 cells, got %d / %d"

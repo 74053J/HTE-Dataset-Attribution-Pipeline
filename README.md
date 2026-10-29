@@ -22,6 +22,21 @@ Laboratory Systems*.
 | `archive/single_dataset_full_benchmark.py` | the single-dataset pipeline path -- independent of the manuscript, documented at the end |
 | `Single_dataset_full_benchmark.bat` | one-click launcher for that pipeline |
 
+## Install
+
+```bat
+setup_env.bat            :: creates .venv, installs requirements.txt, runs check_env.py
+```
+
+Network: the script probes PyPI first and only switches to the Tsinghua mirror when the
+direct link fails or is slower than 60 KB/s.  `setup_env.bat check` only reports what it
+would do; `setup_env.bat mirror` starts from the mirror; `setup_env.bat notorch` skips
+torch (only the GNN arm of Table 2 needs it).
+
+torch is installed **once**, as the CPU build (`--index-url .../whl/cpu`).  It is not in
+`requirements.txt` on purpose: PyPI's Windows wheel is a CUDA build, so listing it there
+made pip download the CUDA wheel and then the CPU wheel again.
+
 ## Reproduce
 
 ```bash

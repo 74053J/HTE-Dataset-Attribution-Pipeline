@@ -12,7 +12,8 @@ otherwise the release is not archived.
    for the free Zenodo GitHub integration).
 2. Do **not** commit the raw datasets (they are not redistributed), `.venv/`,
    `outputs/` or `__pycache__/`.  The shipped `.gitignore` already covers these.
-3. Confirm the archive payload is present: `scripts/`, `hte/`, `tests/`, `docs/`,
+3. Confirm the payload includes `setup_env.bat` (venv + dependencies in one click) and that:
+   `scripts/`, `hte/`, `tests/`, `docs/`, `archive/`, `scripts/`, `hte/`, `tests/`, `docs/`,
    `archive/`, `data/alias_mapping.yaml`, `data/col_mappings.csv`,
    `results/legacy/` (the two inputs `bootstrap_ci.py` needs), `requirements.txt`,
    `LICENSE`, `LICENSE-DATA`, `CITATION.cff`, `README.md`, `README.zh-CN.md`.

@@ -2,9 +2,9 @@
 
 > **STATUS (2026-10-29): historical record.**  The tables below were captured during the
 > manuscript runs and are kept unchanged for auditability.  They are **superseded** by the
-> full re-run of 2026-10-29 on `xgboost-cpu 3.2.0`: see `COMPARISON_vs_paper_20261029.md`
-> for the current agreement (grid: 120/156 cells bit-identical, 149/156 within 1e-3;
-> gate: 53 of 63 checks pass).  Where a number here disagrees with `results/`, the value in
+> full re-run of 2026-10-29 on `xgboost-cpu 3.2.0`.  The current record is the gate itself:
+> `python scripts/verify_numbers.py` recomputes all 67 published numbers from `results/`
+> (grid: 120/156 cells bit-identical, 149/156 within 1e-3; gate: 67 of 67 pass).  Where a number here disagrees with `results/`, the value in
 > `results/` is the current one.
 
 Written 2026-10-27 after tracing every result table back to the file that wrote it

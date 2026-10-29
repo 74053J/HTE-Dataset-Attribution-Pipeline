@@ -19,6 +19,22 @@ set PY=python
 if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
 set PYTHONIOENCODING=utf-8
 
+rem --- keep every cache the run produces INSIDE this folder --------------------
+rem  tempfile/some libraries fall back to the CURRENT DIRECTORY when TEMP is not
+rem  set, which is how attrib_parts_<rand>/ and torchinductor_<user>/ ended up
+rem  next to this file.  Point them all at outputs\cache instead.
+set "CACHE=%~dp0outputs\cache"
+if not exist "%CACHE%" mkdir "%CACHE%" >nul 2>&1
+set "TEMP=%CACHE%\tmp"
+set "TMP=%CACHE%\tmp"
+set "TORCHINDUCTOR_CACHE_DIR=%CACHE%\torchinductor"
+set "TRITON_CACHE_DIR=%CACHE%\triton"
+set "TORCH_HOME=%CACHE%\torch"
+set "MPLCONFIGDIR=%CACHE%\mpl"
+set "NUMBA_CACHE_DIR=%CACHE%\numba"
+set "PYTHONPYCACHEPREFIX=%CACHE%\pycache"
+for %%D in ("%TEMP%" "%TORCHINDUCTOR_CACHE_DIR%" "%TRITON_CACHE_DIR%" "%MPLCONFIGDIR%" "%NUMBA_CACHE_DIR%" "%PYTHONPYCACHEPREFIX%") do if not exist "%%~D" mkdir "%%~D" >nul 2>&1
+
 if not exist "archive\single_dataset_full_benchmark.py" goto :no_script
 
 echo.
@@ -45,6 +61,10 @@ goto :result
 if errorlevel 3 goto :busy
 if errorlevel 1 goto :fail
 echo.
+rem --- sweep anything a library still dropped in this folder --------------------
+for /d %%D in (attrib_parts_* torchinductor_* triton_*) do rd /s /q "%%D" >nul 2>&1
+del /q "tmp*cacert.pem" >nul 2>&1
+del /q "*.tsv" >nul 2>&1
 echo  Done.  Results are in Output_SingleDataset\
 set "RC=0"
 goto :hold
@@ -63,7 +83,12 @@ echo  Run this file from the repository root (the folder that holds archive\ and
 set "RC=1"
 goto :hold
 
+
 :fail
+rem --- sweep anything a library still dropped in this folder --------------------
+for /d %%D in (attrib_parts_* torchinductor_* triton_*) do rd /s /q "%%D" >nul 2>&1
+del /q "tmp*cacert.pem" >nul 2>&1
+del /q "*.tsv" >nul 2>&1
 echo.
 echo  FAILED - see the messages above.
 set "RC=1"

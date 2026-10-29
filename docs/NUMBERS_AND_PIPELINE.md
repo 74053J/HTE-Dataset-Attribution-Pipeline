@@ -7,8 +7,8 @@ Two things in one place, both derived from the code rather than from memory:
 * **Part 2** — the call graph of `run_all.bat`, step by step, with the outputs each step
   produces and what would break if it were skipped.
 
-The authority for Part 1 is `scripts/verify_numbers.py`: it recomputes 44 published numbers
-from the packaged tables and fails if any of them moved.  A number that is not among those 44
+The authority for Part 1 is `scripts/verify_numbers.py`: it recomputes 67 published numbers
+from the packaged tables and fails if any of them moved.  A number that is not among those 67
 is marked **ungated** below — that is a real (if small) risk and is listed in §1.3.
 
 ---
@@ -27,7 +27,7 @@ data/col_mappings.csv ┘
               results/*.csv, outputs/*.npy
                      │
    scripts/figures_paper2.py  ─→ figures/*.png
-   scripts/verify_numbers.py  ─→ PASS/FAIL on 44 numbers
+   scripts/verify_numbers.py  ─→ PASS/FAIL on 67 numbers
 ```
 
 ### 1.2 The table
@@ -38,14 +38,14 @@ data/col_mappings.csv ┘
 | 2 | Fig. 1, Fig. 2, §3.1 | 156 grid cells, per-cell R²/RMSE, `capture mean 86.35 %`, `median 87.34 %`, `ρ(ceiling,R²)=+0.709`, `ρ(n_rows,R²)=−0.100` | `results/grid13_v18.csv` + `table1_v18_final.csv` | `build_grid_ceiling.py` | ✅ |
 | 3 | §3.1 model comparisons | paired Wilcoxon / BH-adjusted q values | `results/grid_stats.csv` | `build_grid_stats.py` | ✅ 4 checks |
 | 4 | Fig. 6, §3.3 enrichment | EF@10 = 93.9 %, EF@50 = 90.9 %, EF@1000 span 1.378–6.872 | `results/enrichment13.csv` | `build_enrichment.py` | ✅ 2 checks |
-| 5 | §3.2 confidence intervals | capture 95 % CI `79.1–93.1 %`, median CI `71.3–100.2 %` | `results/bootstrap_ci.csv` | `bootstrap_ci.py` | ✅ 1 check |
-| 6 | §3.3 attribution shares | reactant_1 17.34, reactant_2 16.53, temperature 11.19, base 10.54, ligand 8.85, time 7.65, solvent 7.61, catalyst 7.45, additive 3.98, catalyst_eq 2.85 | `results/rebuilt_attrib12_long_v7.csv` | `build_attrib13.py` → `build_attrib_postprocess.py` | ✅ 6 checks |
+| 5 | §3.2 confidence intervals | capture 95 % CI `79.4–93.4 %`, median CI `72.0–100.2 %` | `results/bootstrap_ci.csv` | `bootstrap_ci.py` | ✅ 1 check |
+| 6 | §3.3 attribution shares | reactant_1 17.34, reactant_2 16.53, temperature 11.19, base 10.54, ligand 8.85, time 7.68, solvent 7.59, catalyst 7.45, additive 3.98, catalyst_eq 2.85 | `results/rebuilt_attrib12_long_v7.csv` | `build_attrib13.py` → `build_attrib_postprocess.py` | ✅ 6 checks |
 | 7 | §3.3 first-place counts | 50 / 46 / 30 / 11 of 156 cells, “87 % of the cells” | same table | same | ✅ 4 checks |
 | 8 | §3.3 encoding agreement | median ρ = 0.846, median L1 = 27.0 pp, 65 pairs | same table | same | ✅ 3 checks |
 | 9 | §3.3 permutation vs SHAP | mean +0.897, median **0.9273**, 156 cells | `results/perm_vs_shap_cells13.csv` | `build_attrib13.py` | ✅ 3 checks |
 | 10 | Fig. 3, Fig. 4 | per-feature SHAP distributions and the per-level box plots | `results/attrib13_long.csv` | `build_attrib13.py` | ✅ 2 checks (row and cell counts) |
 | 11 | §3.4 held-out paragraph | first pick 95.0 %, random 12.3 %, ceiling 105.0 %, `ρ(σ,\|err\|)=0.115`, coverage 47.3 % | `results/heldout_acquisition.csv`, `results/heldout_calibration.csv` | `build_heldout_acquisition.py` | ✅ 4 checks |
-| 12 | §3.4 Bayesian paragraph, Fig. 8 | top prediction 84.2 %, EI pick 56.3 % (rank 21,772), sd 44.6, library median sd 8.9, EI 71.9 % at 100 picks, random 55.5 % | `outputs/acquisition/acq_mu.npy`, `acq_sd.npy`; curves in `results/bo_panel_data.csv` | `build_acquisition.py`, `build_bo_panel.py` | ✅ 1 check (panel row count) |
+| 12 | §3.4 Bayesian paragraph, Fig. 8 | top prediction 84.1 %, EI pick 56.5 % (rank 21,772), sd 44.6, library median sd 8.9, EI 71.9 % at 100 picks, random 55.5 % | `outputs/acquisition/acq_mu.npy`, `acq_sd.npy`; curves in `results/bo_panel_data.csv` | `build_acquisition.py`, `build_bo_panel.py` | ✅ 1 check (panel row count) |
 | 13 | Fig. 5, §3.5 transfer | mean −1.356, range −4.94…−0.12, 48 cells, 48/48 negative | `outputs/c20_transfer_4donor/transfer_matrix.csv`, `results/transfer_check.csv` | `build_transfer.py`, `build_transfer_check.py` | ✅ 5 checks |
 | 14 | Fig. 7, §3.5 protocols | +0.7579 random, −0.1515 substrate-disjoint, −0.7994 ordered, drop 0.909 | `results/protocol_cv.csv` | `build_protocols.py` | ✅ 4 checks |
 | 15 | Table 2, §3.6 | structural baselines (cond-only / +ECFP / +descriptors / +MACCS / GNN) | `results/graph_baseline.csv` | `build_table2.py` | ✅ 1 check (row count) |
@@ -57,7 +57,7 @@ data/col_mappings.csv ┘
 ### 1.3 Known soft spots (stated plainly)
 
 > **Update 2026-10-28 (same day).**  The two soft spots above are closed:
-> * the gate now runs **67 checks** (44 + 19 new ones covering `grid_stats`,
+> * the gate now runs **67 checks** (63 + 4 CI checks, covering `grid_stats`,
 >   `enrichment13`, `bootstrap_ci`, `protocol_cv`, `graph_baseline`, `novel_pairs`,
 >   `unseen_reactants`, `bo_panel_data` and `attrib13_long`), so "ungated" no longer
 >   applies to any table in §1.2;
@@ -69,7 +69,7 @@ data/col_mappings.csv ┘
 
 | Issue | Consequence | Fix if wanted |
 |---|---|---|
-| ~~8 of the 19 sources were not gated~~ | **closed 2026-10-28**: 19 checks added, the gate now runs **63** | — |
+| ~~8 of the 19 sources were not gated~~ | **closed 2026-10-28**: 19 checks added, the gate now runs **67** | — |
 | ~~`final_numbers_v2.json` had no producer~~ | **closed 2026-10-28**: `build_final_numbers.py` derives it from Table 1 + the grid, and runs before the gate | — |
 | §3.4's two paragraphs use **different σ** definitions? | **No** — both use the five-architecture panel spread since v3.43 | — |
 | the gate's total was hard-coded (`len(fails) + 44`) | **closed**: every check counts itself, so adding one can never leave the reported total stale | — |
@@ -128,8 +128,8 @@ flowchart TD
     S10b["<b>Step 10b</b> build_final_numbers.py<br/>derives the aggregate ledger<br/>from Table 1 + the grid"]
     S10b --> O10b[("outputs/final_numbers/<br/>final_numbers_v2.json")]
     O10b --> S11
-    S11["<b>Step 11</b> verify_numbers.py<br/>recomputes 63 published numbers<br/>from the tables above"]
-    S11 --> OK{all 44 match?}
+    S11["<b>Step 11</b> verify_numbers.py<br/>recomputes 67 published numbers<br/>from the tables above"]
+    S11 --> OK{all 67 match?}
     OK -->|yes| DONE["ALL DONE<br/>tables in results\\, figures in figures\\"]
     OK -->|no| FAIL["FAILED — prints the offending checks"]
 ```
@@ -149,7 +149,7 @@ flowchart TD
 | 9 | trains 156 models; nothing else depends on it except figures 3/4 and the §3.3 numbers | **18 min** |
 | 10 | reads every table above | 1 min |
 | 10b | derives `final_numbers_v2.json` from Table 1 and the grid | <1 s |
-| 11 | reads every table above and recomputes the **63** numbers | 5 s |
+| 11 | reads every table above and recomputes the **67** numbers | 5 s |
 
 ### What each step would break if removed
 

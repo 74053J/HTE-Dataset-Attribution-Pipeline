@@ -19,8 +19,9 @@ seaborn>=0.13
 tqdm>=4.60
 Pillow>=10.0
 
-# torch: needed only by scripts/build_table2.py (the GNN arm).  The default wheel pulls
-# ~2 GB of CUDA libraries; if you want the CPU build, reinstall it with
-#   pip install --no-cache-dir --force-reinstall torch --index-url https://download.pytorch.org/whl/cpu
-# A CUDA build also works -- it just downloads more.
-torch>=2.2
+# torch is installed separately by setup_env.bat, ONCE, as the CPU build
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# It is deliberately not listed here: PyPI's default wheel for Windows is a CUDA build
+# (~250 MB plus the nvidia-* runtime libraries), and listing it here made pip download the
+# CUDA wheel and then download the CPU wheel again.  Only scripts/build_table2.py (the GNN
+# arm) needs torch at all; everything else runs without it.

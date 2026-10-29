@@ -21,6 +21,20 @@
 | `archive/single_dataset_full_benchmark.py` | 单数据集流水线通路——与论文相互独立，说明见文末 |
 | `Single_dataset_full_benchmark.bat` | 该流水线的一键启动器 |
 
+## 安装
+
+```bat
+setup_env.bat            :: 建 .venv、装 requirements.txt、跑 check_env.py
+```
+
+联网策略：先直连 PyPI 并测速，**失败或低于 60 KB/s 才切清华源**。
+`setup_env.bat check` 只报告不安装；`setup_env.bat mirror` 直接从清华源装；
+`setup_env.bat notorch` 跳过 torch（只有 Table 2 的 GNN 那一臂需要它）。
+
+torch 只装**一次**，用 CPU 构建（`--index-url .../whl/cpu`）。它**故意不写进
+`requirements.txt`**：PyPI 给 Windows 的默认轮子是 CUDA 版，写进去会导致
+“先下 CUDA 版、再下 CPU 版”的重复下载。
+
 ## 复现
 
 ```bash

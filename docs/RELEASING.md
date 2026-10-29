@@ -8,7 +8,7 @@ otherwise the release is not archived.
 
 ## 1. Create the GitHub repository
 
-1. Create a public repository, e.g. `suzuki-hte-benchmark` (public is required
+1. The repository is `74053J/HTE-Dataset-Attribution-Pipeline` (public is required
    for the free Zenodo GitHub integration).
 2. Do **not** commit the raw datasets (they are not redistributed), `.venv/`,
    `outputs/` or `__pycache__/`.  The shipped `.gitignore` already covers these.
@@ -27,13 +27,15 @@ git init
 git add .
 git commit -m "v1.0.0: HTE yield-prediction benchmark"
 git branch -M main
-git remote add origin https://github.com/<user>/suzuki-hte-benchmark.git
+git remote add origin https://github.com/74053J/HTE-Dataset-Attribution-Pipeline.git
 git push -u origin main
 ```
 
-Check on GitHub that `archive/single_dataset_full_benchmark.py` is byte-identical to
-the local copy and that `results/checksums.txt` matches the shipped files
-(`sha256sum -c` on Linux/macOS, or compare the hashes by hand on Windows).
+Check on GitHub that `archive/single_dataset_full_benchmark.py` is byte-identical to the
+local copy, that the tree has **85 blobs** and that none of `outputs/`, `figures/`,
+`output_singletataset/`, the raw data CSVs, `*.tsv` or `COMPARISON_vs_paper_20261029.md`
+is present.  On the data side, `results/legacy/` must contain exactly the two inputs
+`bootstrap_ci.py` reads.
 
 ## 2b. Running two pipelines at once (the machine-wide lock)
 
@@ -59,7 +61,7 @@ read the same file, so a dataset run and a batch run never overlap while `CD_LOC
 1. Sign in at <https://zenodo.org> with the GitHub account that owns the repo.
 2. Open **Settings -> GitHub** (<https://zenodo.org/account/settings/github/>)
    and authorise Zenodo if prompted.
-3. Find `suzuki-hte-benchmark` in the repository list and flip its switch **on**.
+3. Find `74053J/HTE-Dataset-Attribution-Pipeline` in the repository list and flip its switch **on**.
 4. Optional but recommended: use <https://sandbox.zenodo.org> first to rehearse
    the flow without minting a real DOI.
 

@@ -1,0 +1,35 @@
+# Alias mapping: the single source of truth for how each source file's
+# dataset identifier maps onto the short alias used throughout the paper.
+#
+# alias:  short identifier used in Table I, figures and results/*.csv
+# source: dataset identifier as it appears in the original published files
+# source_group: originating public source (six sources; Suzuki-Coupling-ML is
+#               the one synthetic benchmark, excluded from the ceiling analysis)
+# reaction: reaction class of the subset
+
+datasets:
+  AI_RCP_BH: {source: "(AI_RCP_pub)bh_data_clean_all_whitelisted", source_group: AI_RCP, reaction: Buchwald-Hartwig, donor: true, case_study: true, structure: true, label: "AI_RCP_BH"}
+  AI_RCP_SM: {source: "(AI_RCP_pub)sm_data_clean_all_whitelisted", source_group: AI_RCP, reaction: Suzuki-Miyaura, structure: true, label: "AI_RCP_SM"}
+  "bh-hte-ood_BH": {source: "(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219", source_group: bh-hte-ood, reaction: Buchwald-Hartwig, donor: true, pair_extrapolation: true, unseen_reactant: true, structure: true, label: "BH-hte-ood"}
+  DoyleHTE_CN: {source: "(DoyleHTE)CN_coupling_3600", source_group: DoyleHTE, reaction: C-N coupling, corpus: false, structure: true, label: "DoyleHTE_CN"}
+  Roche66k_Amide: {source: "(Roche66k)Amide_coupling_3917", source_group: Roche66k, reaction: Amide condensation, label: "R66k_Amide"}
+  Roche66k_BH: {source: "(Roche66k)Buchwald_Hartwig_14191", source_group: Roche66k, reaction: Buchwald-Hartwig, donor: true, label: "R66k_BH"}
+  "Roche66k_BH+SM": {source: "(Roche66k)BH_plus_SM_24137", source_group: Roche66k, reaction: BH + Suzuki-Miyaura, corpus: false, label: "R66k_BH+SM"}
+  Roche66k_CH: {source: "(Roche66k)CH_activation_1251", source_group: Roche66k, reaction: C-H activation, label: "R66k_CH"}
+  Roche66k_CN: {source: "(Roche66k)CN_coupling_3100", source_group: Roche66k, reaction: C-N coupling, label: "R66k_CN"}
+  Roche66k_CO: {source: "(Roche66k)CO_coupling_2112", source_group: Roche66k, reaction: C-O coupling, label: "R66k_CO"}
+  Roche66k_Cond: {source: "(Roche66k)Condensation_2095", source_group: Roche66k, reaction: Condensation, label: "R66k_Cond"}
+  Roche66k_SM: {source: "(Roche66k)Suzuki_Miyaura_9946", source_group: Roche66k, reaction: Suzuki-Miyaura, label: "R66k_SM"}
+  Summit_CN: {source: "(Summit)Baumgartner_CN_coupling_96", source_group: Summit, reaction: C-N coupling, ceiling: false, label: "Summit_CN"}
+  Summit_SM: {source: "(Summit)Reizman_Suzuki_385", source_group: Summit, reaction: Suzuki-Miyaura, donor: true, label: "Summit_SM"}
+  "Suzuki-Coupling-ML_SM": {source: "(Suzuki-Coupling-ML)suzuki_dataset_raw_origin", source_group: Suzuki-Coupling-ML, reaction: Suzuki-Miyaura, synthetic: true, corpus: false, label: "SuzCoupl_SM"}
+  rxn_yields_SM: {source: "(rxn_yields)aap9112_Data_File_S1", source_group: rxn_yields, reaction: Suzuki-Miyaura, ceiling: false, label: "rxn_yields_SM"}
+
+# The ten semantic slots every source is normalised into.
+slots: [catalyst, ligand, base, solvent, leaving_group, substrate_type,
+        metal_center, temperature, time, catalyst_loading]
+
+# Per-file flags:
+#   corpus: false   -- present in data/ but not in the manuscript's 13-dataset corpus
+#   ceiling: false  -- no condition was ever measured twice, so no noise ceiling exists
+# Both default to true; a new dataset therefore only needs `source`.

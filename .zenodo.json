@@ -1,0 +1,21 @@
+{
+  "title": "Yield prediction and condition recommendation on high-throughput experimentation datasets",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Wan, Lingfeng",
+      "affiliation": "Independent Researcher, Guangzhou, China"
+    }
+  ],
+  "keywords": [
+    "high-throughput experimentation",
+    "yield prediction",
+    "SHAP attribution",
+    "noise ceiling",
+    "categorical encoding",
+    "Bayesian optimization"
+  ],
+  "description": "<p>Code and result tables for a thirteen-dataset audit of yield prediction on high-throughput experimentation data: categorical encoding effects, noise ceilings and capture ratios, attribution stability across architectures, and the behaviour of acquisition functions relative to ranking.</p><p>Raw datasets are not redistributed: run fetch_datasets.bat to download and prepare them from the public sources listed in the article's data availability statement.</p>"
+}

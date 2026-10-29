@@ -1,0 +1,64 @@
+section	check	now	paper	status
+[1] dataset inventory (Table 1)	datasets	13	13	OK
+[1] dataset inventory (Table 1)	datasets with a ceiling	11	11	OK
+[1] dataset inventory (Table 1)	model-dataset cells	156	156	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	best R2 min (all 13)	0.4161	0.417	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	best R2 max (all 13)	0.8684	0.867	FAIL
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	best R2 max (11 with ceiling)	0.8482	0.848	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	ceiling min	0.5755	0.576	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	ceiling max	0.9711	0.971	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	capture mean (%)	86.3456	86.35	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	capture median (%)	87.3376	87.34	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	rho(ceiling, R2)	0.7091	0.709	OK
+[2] accuracy, ceiling and capture (sections 3.2 and 4)	rho(n_rows, R2)	-0.1000	-0.1	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share reactant_1	17.3360	17.3	FAIL
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share reactant_2	16.5319	16.69	FAIL
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share temperature	11.1859	11.2	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share base	10.5365	10.53	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share ligand	8.8461	8.8	FAIL
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share catalyst_eq	2.8376	2.85	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	share solvent_eq	0.0085	0.006	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	first-rank reactant_1	50	49	FAIL
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	first-rank reactant_2	46	46	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	first-rank temperature	30	30	OK
+[3] attribution shares and first-rank counts (section 3.3, figure 3)	first-rank additive	11	11	OK
+[4] encoding pairs (section 3.3)	integer vs one-hot pairs	65	65	OK
+[4] encoding pairs (section 3.3)	pairs sharing the top slot	35	35	OK
+[4] encoding pairs (section 3.3)	rho median	0.8455	0.85	FAIL
+[4] encoding pairs (section 3.3)	L1 median (percentage points)	27.0450	26.09	FAIL
+[5] permutation vs SHAP (section 3.3)	perm-vs-SHAP mean	0.8967	0.899	OK
+[5] permutation vs SHAP (section 3.3)	perm-vs-SHAP median	0.9273	0.9273	OK
+[5] permutation vs SHAP (section 3.3)	cells	156	156	OK
+[6] cross-dataset transfer (section 3.5)	transfer cells	48	48	OK
+[6] cross-dataset transfer (section 3.5)	transfer cells negative	48	48	OK
+[6] cross-dataset transfer (section 3.5)	transfer worst	-4.9403	-4.94	OK
+[6] cross-dataset transfer (section 3.5)	transfer best	-0.0813	-0.1	OK
+[7] aggregate ledger agrees with the tables	json spearman_rho	0.7091	0.7090909090909092	OK
+[7] aggregate ledger agrees with the tables	json median_capture	0.8734	0.8733756028758433	OK
+[7] aggregate ledger agrees with the tables	json mean_capture	0.8635	0.8634563066707177	OK
+[7] aggregate ledger agrees with the tables	json best_r2.min	0.4161	0.4160983095467068	OK
+[7] aggregate ledger agrees with the tables	json best_r2.max	0.8684	0.8683665208571499	OK
+[7] aggregate ledger agrees with the tables	json rho(n_rows, R2)	-0.1000	-0.10000000000000002	OK
+[9] the remaining published tables	grid_stats rows	6.0000	6	OK
+[9] the remaining published tables	grid_stats encoding_effect gap	0.1683	0.165877	FAIL
+[9] the remaining published tables	grid_stats mlp_int_vs_xgb gap	-0.2450	-0.242452	FAIL
+[9] the remaining published tables	grid_stats histgb_vs_xgb gap	-0.0512	-0.050768	FAIL
+[9] the remaining published tables	enrichment rows	13.0000	13	OK
+[9] the remaining published tables	enrichment mean ef_10	3.1976	3.1977	OK
+[9] the remaining published tables	bootstrap rows	26.0000	26	OK
+[9] the remaining published tables	protocol rows	3.0000	3	OK
+[9] the remaining published tables	protocol random mean R2	0.7579	0.757918	OK
+[9] the remaining published tables	protocol substrate-disjoint mean R2	-0.1515	-0.151465	OK
+[9] the remaining published tables	protocol ordered mean R2	-0.7994	-0.79944	OK
+[9] the remaining published tables	graph_baseline rows	20.0000	20	OK
+[9] the remaining published tables	novel_pairs rows	5.0000	5	OK
+[9] the remaining published tables	novel_pairs xgb_native R2	0.5833	0.58335	OK
+[9] the remaining published tables	unseen_reactants rows	5.0000	5	OK
+[9] the remaining published tables	unseen_reactants n_unseen	5829.0000	5829	OK
+[9] the remaining published tables	bo_panel rows	1113.0000	1113	OK
+[9] the remaining published tables	attrib13_long rows	1392.0000	1392	OK
+[9] the remaining published tables	attrib13_long cells	156.0000	156	OK
+[8] held-out real chemistry (section 3.4)	heldout k=1 ranking	95.0000	95.0	OK
+[8] held-out real chemistry (section 3.4)	heldout k=1 random	12.3000	12.3	OK
+[8] held-out real chemistry (section 3.4)	heldout rho(sd,err)	0.1153	0.115	OK
+[8] held-out real chemistry (section 3.4)	heldout coverage 90	47.3091	47.3	OK

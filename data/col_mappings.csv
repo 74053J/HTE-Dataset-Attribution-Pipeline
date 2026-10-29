@@ -1,0 +1,146 @@
+dataset,standard_column,raw_column,priority,note
+,catalyst,catalyst,1.0,催化剂列
+,catalyst,Catalyst,2.0,催化剂列
+,catalyst,catalyst_name,3.0,催化剂列；AI_RCP 里装的是配体，已被覆盖改到 ligand
+,catalyst,Catalyst Name,4.0,催化剂列
+,catalyst,Catalyst_Name,5.0,催化剂列
+,catalyst,Precatalyst,6.0,催化剂列
+,catalyst,precatalyst,7.0,催化剂列
+,catalyst,Catalyst_1_Short_Hand,8.0,rxn_yields 的催化剂列
+,ligand,ligand,1.0,配体列
+,ligand,Ligand,2.0,配体列
+,ligand,ligand_name,3.0,配体列
+,ligand,Ligand Name,4.0,配体列
+,ligand,Ligand_Name,5.0,配体列
+,ligand,Ligand_Short_Hand,6.0,配体列
+,ligand,Ligand_1_Short_Hand,7.0,rxn_yields 的配体列
+,ligand,ligand_1_name,8.0,配体列
+,base,base,1.0,碱
+,base,Base,2.0,碱
+,base,base_name,3.0,碱
+,base,Base Name,4.0,碱
+,base,Base_Name,5.0,碱
+,base,base_1_name,6.0,碱
+,base,Base_1_Short_Hand,7.0,碱
+,base,reagent_1_name,8.0,碱；reagent_1_name 在 AI_RCP 里就是碱
+,base,Reagent_1_Short_Hand,9.0,碱；rxn_yields 的碱列
+,solvent,solvent,1.0,溶剂列
+,solvent,Solvent,2.0,溶剂列
+,solvent,solvent_name,3.0,溶剂列
+,solvent,Solvent Name,4.0,溶剂列
+,solvent,solvent_1_name,5.0,溶剂列
+,solvent,Solvent_1_Short_Hand,6.0,主溶剂；rxn_yields 的溶剂列
+,solvent,solvent_1,7.0,溶剂列
+,cosolvent,solvent_2,1.0,第二溶剂（共溶剂）；空值填 none
+,cosolvent,solvent_2_name,2.0,第二溶剂（共溶剂）；空值与 NoSolvent 填 none
+,cosolvent,CoSolvent,3.0,第二溶剂（共溶剂）
+,cosolvent,cosolvent,4.0,第二溶剂（共溶剂）
+,additive,additive,1.0,添加剂；NoAdditive 填 none
+,additive,Additive,2.0,添加剂
+,additive,additives_name_merged,3.0,添加剂；NoAdditive 填 none
+,additive,additive_name,4.0,添加剂
+,additive,Additive Name,5.0,添加剂
+,reactant_2,leaving_group,1.0,第二个反应物（亲电组分）
+,reactant_2,startingmat_2_name,2.0,第二个反应物；AI_RCP 里是胺
+,reactant_2,Reactant_2_Name,3.0,第二个反应物；rxn_yields 里是硼酸
+,reactant_2,Electrophile,4.0,第二个反应物（亲电组分）
+,reactant_2,electrophile_name,5.0,第二个反应物（亲电组分）
+,reactant_2,fg_b,6.0,第二个反应物；Roche 的功能团类别
+,reactant_1,substrate_type,1.0,第一个反应物（亲核/底物组分）
+,reactant_1,substrate_name,2.0,第一个反应物（亲核/底物组分）
+,reactant_1,substrate_id,3.0,第一个反应物（亲核/底物组分）
+,reactant_1,startingmat_1_name,4.0,第一个反应物；AI_RCP 里是芳基卤
+,reactant_1,Reactant_1_Name,5.0,第一个反应物；rxn_yields 里是芳基卤
+,reactant_1,Nucleophile,6.0,第一个反应物（亲核/底物组分）
+,reactant_1,nucleophile_name,7.0,第一个反应物（亲核/底物组分）
+,reactant_1,fg_a,8.0,第一个反应物；Roche 的功能团类别
+,reactant_1,phenol_id,9.0,第一个反应物（亲核/底物组分）
+,reactant_1,mesylate_id,10.0,第一个反应物（亲核/底物组分）
+,metal,(由 catalyst 解析),1.0,金属；无金属列时由 catalyst 的催化剂名解析（CuI→Cu、Pd 络合物→Pd、Ru(p-cymene)→Ru、ZnCl2→Zn），解析不出填 none
+,temperature,temperature,1.0,温度
+,temperature,Temperature,2.0,温度
+,temperature,temperature_deg_c,3.0,温度
+,temperature,Temp_C,4.0,温度
+,temperature,temp,5.0,温度
+,temperature,Temp,6.0,温度
+,time,time,1.0,时间
+,time,Time,2.0,时间
+,time,time_h,3.0,时间
+,time,Time_h,4.0,时间
+,time,t_res,5.0,停留时间；Summit 的 time 列
+,time,duration,6.0,时间
+,catalyst_eq,catalyst_loading,1.0,催化剂当量
+,catalyst_eq,catalyst_eq,2.0,催化剂当量；AI_RCP 的列名
+,catalyst_eq,Catalyst_1_eq,3.0,催化剂当量；rxn_yields 的列名
+,catalyst_eq,loading,4.0,催化剂当量
+,catalyst_eq,catalyst_loading_eq,5.0,催化剂当量
+,catalyst_eq,Catalyst_1_Equiv,6.0,催化剂当量
+,reactant_2_eq,startingmat_2_eq,1.0,第二反应物当量；AI_RCP 的实际配出值
+,reactant_2_eq,Reactant_2_eq,2.0,第二反应物当量；rxn_yields
+,reactant_2_eq,reactant_2_eq,3.0,第二反应物当量
+,base_eq,reagent_1_eq,1.0,碱/试剂当量；AI_RCP 的实际配出值
+,base_eq,Reagent_1_eq,2.0,碱/试剂当量；rxn_yields 的列名
+,base_eq,base_equivalents,3.0,碱当量；Summit_CN 的两档配出值
+,base_eq,base_eq,4.0,碱/试剂当量
+,solvent_smiles,solvent_smiles,1.0,溶剂 SMILES
+,solvent_smiles,Solvent SMILES,2.0,溶剂 SMILES
+,solvent_smiles,solvent_1_smiles,3.0,溶剂 SMILES
+,solvent_smiles,Solvent_SMILES,4.0,溶剂 SMILES
+,yield,yield,1.0,产率
+,yield,Yield,2.0,产率
+,yield,yld,3.0,产率；Summit 的列名
+,yield,product_1_area%,4.0,产率；AI_RCP 的 UV 面积百分比
+,yield,Product_Yield_PCT_Area_UV,5.0,产率；rxn_yields 的列名
+,success,success,1.0,成功/反应完成标记
+,success,Success,2.0,成功/反应完成标记
+,success,suff_yield,3.0,成功标记；AI_RCP 的列名
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,catalyst,disable,,覆盖：本文件有该列，但其内容属于别的槽，不能用于此槽
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,ligand,catalyst_name,,覆盖：本文件的配体来自非常规列名
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,catalyst,disable,,覆盖：本文件有该列，但其内容属于别的槽，不能用于此槽
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,ligand,catalyst_name,,覆盖：本文件的配体来自非常规列名
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,cosolvent,disable,,覆盖：第二溶剂列全为 NoSolvent，等价于无共溶剂
+(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219.csv,reactant_2,Amine SMILES,,覆盖：无反应物名称列，只用结构；Amine SMILES 为亲核组分（96% 含 N）
+(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219.csv,reactant_1,Aryl SMILES,,覆盖：无反应物名称列，只用结构；Aryl SMILES 为亲电组分（100% 含 Br/Cl/I）
+(Roche66k)Amide_coupling_3917.csv,catalyst,amide_coupling_reagent,,覆盖：本文件的催化剂列不在常规位置（该列装的是 DIC/T3P/EDC 缩合剂）
+(Summit)Baumgartner_CN_coupling_96.csv,catalyst,disable,,覆盖：本文件有该列，但其内容属于别的槽，不能用于此槽
+(Summit)Baumgartner_CN_coupling_96.csv,ligand,catalyst,,覆盖：本文件的配体来自非常规列名
+,reactant_1_eq,startingmat_1_eq,1.0,第一反应物当量
+,reactant_1_eq,Reactant_1_eq,2.0,第一反应物当量
+,reactant_1_eq,reactant_1_eq,3.0,第一反应物当量
+,ligand_eq,Ligand_eq,1.0,配体当量
+,ligand_eq,ligand_eq,2.0,配体当量
+,ligand_eq,ligand_equivalent,3.0,配体当量
+,ligand_eq,Ligand_equivalent,4.0,配体当量
+,solvent_eq,solvent_1_fraction,1.0,溶剂配比（主溶剂体积分数）
+,cosolvent_eq,solvent_2_fraction,2.0,助溶剂配比
+,solvent_eq,solvent_fraction,3.0,溶剂配比（主溶剂体积分数）
+,additive_eq,additives_fraction_merged,1.0,添加剂用量/当量
+,additive_eq,additive_equivalent,2.0,添加剂用量/当量
+,additive_eq,additive_eq,3.0,添加剂用量/当量
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,ligand_eq,catalyst_eq,99.0,覆盖：该数据集的 catalyst 列是配体，其当量归 ligand_eq
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,ligand_eq,catalyst_eq,99.0,覆盖：该数据集的 catalyst 列是配体，其当量归 ligand_eq
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,catalyst_eq,disable,,覆盖：该数据集的 catalyst_eq 列就是配体当量，已归 ligand_eq，故此槽禁用
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,catalyst_eq,disable,,覆盖：该数据集的 catalyst_eq 列就是配体当量，已归 ligand_eq，故此槽禁用
+,substrate_type,fg_a,90.0,Roche 的 fg_a 是其中一个偶联组分，作为条件键的一部分
+,leaving_group,fg_b,90.0,Roche 的 fg_b 是另一个偶联组分，作为条件键的一部分
+(DoyleHTE)CN_coupling_3600.csv,catalyst,disable,,覆盖：该文件只有配体列，catalyst 槽禁用
+(Suzuki-Coupling-ML)suzuki_dataset_raw_origin.csv,catalyst,disable,,覆盖：该文件只有配体列，catalyst 槽禁用
+(Roche66k)Condensation_2095.csv,catalyst,disable,,覆盖：该文件没有催化剂列
+(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219.csv,ligand,disable,,覆盖：该文件只有催化剂列
+(bh-hte-ood)BH_Manu_NewConditions_20250310_result.csv,ligand,disable,,覆盖：该文件只有催化剂列
+(bh-hte-ood)Case1_selections_20250408_result.csv,ligand,disable,,覆盖：该文件只有催化剂列
+(Summit)Reizman_Suzuki_385.csv,ligand,disable,,覆盖：该文件只有催化剂列
+,additive,additive_id,6.0,添加剂编号；DoyleHTE 的列名（15×4×3×20 全因子设计的第 4 个轴）
+,reactant_1_smiles,reactant_1_smiles,1.0,反应物1 的 SMILES（PCA 用）
+,reactant_1_smiles,StartingMaterial1 SMILES,2.0,反应物1 的 SMILES（PCA 用）
+,reactant_2_smiles,reactant_2_smiles,1.0,反应物2 的 SMILES（PCA 用）
+,reactant_2_smiles,StartingMaterial2 SMILES,2.0,反应物2 的 SMILES（PCA 用）
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,reactant_1_smiles,startingmat_1_smiles,1.0,本文件反应物1 SMILES
+(AI_RCP_pub)bh_data_clean_all_whitelisted.csv,reactant_2_smiles,startingmat_2_smiles,1.0,本文件反应物2 SMILES
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,reactant_1_smiles,startingmat_1_smiles,1.0,本文件反应物1 SMILES
+(AI_RCP_pub)sm_data_clean_all_whitelisted.csv,reactant_2_smiles,startingmat_2_smiles,1.0,本文件反应物2 SMILES
+(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219.csv,reactant_1_smiles,Aryl SMILES,1.0,本文件芳基卤 SMILES
+(bh-hte-ood)BH_HTE_Curated_Dataset_v20260219.csv,reactant_2_smiles,Amine SMILES,1.0,本文件胺 SMILES
+(DoyleHTE)CN_coupling_3600.csv,reactant_1_smiles,substrate_smiles,1.0,本文件底物 SMILES
+(DoyleHTE)CN_coupling_3600.csv,ligand,ligand_id,1.0,由 SMILES 派生的结构编号（Doyle 无标识列）
+(DoyleHTE)CN_coupling_3600.csv,base,base_id,1.0,由 SMILES 派生的结构编号（Doyle 无标识列）

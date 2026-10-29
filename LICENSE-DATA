@@ -1,0 +1,90 @@
+﻿This package redistributes NO third-party data.
+
+Code: MIT (see LICENSE).  Our own result tables under results/ and outputs/, and the
+two mapping tables data/col_mappings.csv and data/alias_mapping.yaml, are CC BY 4.0.
+
+Every dataset the paper uses is fetched from its official record by
+    fetch_datasets.bat            (or: python scripts/fetch_datasets.py --i-agree)
+which downloads, checks and prepares the files locally.  The licences below therefore
+govern the copy on your machine, not a copy inside this package.
+
+  AI_RCP_pub          github.com/LorenzoTarricone/AI_RCP_pub       MIT
+                      (also Zenodo 10.5281/zenodo.18185850, CC BY 4.0)
+  bh-hte-ood          github.com/schwallergroup/bh-hte-ood         Apache-2.0
+  Summit              github.com/sustainable-processes/summit     MIT
+  Roche66k            figshare 31271789 + zScore-App               CC BY-NC 4.0
+  DoyleHTE            github.com/doyle-lab-ucla/ochem-data        CC BY 4.0
+  rxn_yields          Science 10.1126/science.aap9112             AAAS Science
+                      Journals Default License (no open licence)
+
+Obligations for your local copies
+---------------------------------
+MIT            keep the copyright and permission notice.
+Apache-2.0     keep the NOTICE and state that the copy is a subset of the release.
+CC BY 4.0      attribution; for DoyleHTE credit github.com/doyle-lab-ucla/ochem-data.
+CC BY-NC 4.0   attribution AND non-commercial use only.  The eight (Roche66k)*.csv
+               files are a subset of figshare record 31271789
+               (https://figshare.com/articles/dataset/x/31271789) by Jesse Ahlbrecht,
+               Marius D. R. Lutz, Vera Jost, Michael Farber, Stefan Brase and
+               Georg Wuitschik (DOI 10.1021/acscentsci.5c02031), converted from the
+               published table; no value was altered.
+
+rxn_yields is fetched only on request
+-------------------------------------
+The article is under the AAAS Science Journals Default License.  Reading it and using
+it for non-commercial research is permitted; redistribution is not.  The script asks
+for a second confirmation before fetching it, and the file must not be committed.
+
+this file (LICENSE-DATA) carries the same table with the evidence for every entry, plus
+the exact preparation rule for each dataset.
+
+
+----------------------------------------------------------------------
+
+﻿# Dataset licences
+
+This package **redistributes no third-party data**.  `data/` contains only the two
+mapping tables we wrote (`col_mappings.csv`, `alias_mapping.yaml`); every dataset is
+fetched from its official record by `fetch_datasets.bat`, which also performs the
+preparation steps listed in section 3.
+
+The licences below therefore govern the copies on your machine.
+
+## 1. Sources
+
+| Dataset | Official record | Licence (where it was read) |
+|---|---|---|
+| AI_RCP_pub | `github.com/LorenzoTarricone/AI_RCP_pub`; Zenodo 10.5281/zenodo.18185850 | **MIT** (GitHub API) / **CC BY 4.0** (Zenodo) |
+| bh-hte-ood | `github.com/schwallergroup/bh-hte-ood` | **Apache-2.0** (GitHub API) |
+| Summit | `github.com/sustainable-processes/summit` | **MIT** |
+| Roche66k | figshare 31271789 + `github.com/georg-wuitschik-Roche/zScore-App` | **CC BY-NC 4.0** (figshare API) |
+| DoyleHTE | `github.com/doyle-lab-ucla/ochem-data` (`CN/rxns/smiles.csv`) | **CC BY 4.0** (GitHub API) |
+| rxn_yields | Perera et al., *Science* 359, 429 (2018), Data File S1 | **AAAS Science Journals Default License** — no open licence registered; local non-commercial use permitted, redistribution not |
+| Suzuki-Coupling-ML | `github.com/kroy3/Suzuki-Coupling-ML` | **MIT**, but a synthetic benchmark (`corpus: false`); no longer fetched |
+
+## 2. Obligations
+
+- **MIT** — keep the copyright and permission notice.
+- **Apache-2.0** — keep the NOTICE; state that the copy is a subset (27,497 of
+  357,461 rows).
+- **CC BY 4.0** — attribution; for DoyleHTE credit `doyle-lab-ucla/ochem-data`.
+- **CC BY-NC 4.0** — attribution **and non-commercial use only**.  The eight
+  `(Roche66k)*.csv` files are a subset of figshare record 31271789 by J. Ahlbrecht,
+  M. D. R. Lutz, V. Jost, M. Färber, S. Bräse and G. Wuitschik (DOI
+  `10.1021/acscentsci.5c02031`), converted from the published table; no value altered.
+- **AAAS Default License** — reading and non-commercial research use are permitted;
+  redistribution requires written permission.  The script asks for a second
+  confirmation and the file must not be committed.
+
+## 3. What the fetch script does to each dataset
+
+| Dataset | Preparation |
+|---|---|
+| Roche66k | one table of 72,142 reactions → keep rows whose `output_column` has a `"<time> h at <temperature> °C"` stage (first stage) → 51,275 rows → split by reaction type (7 single + one BH ∪ SM union); counts 3,917 / 14,191 / 9,946 / 3,100 / 2,112 / 2,095 / 1,251 / 24,137 |
+| DoyleHTE | 4,599 rows (16 substrates × 24 additives) → drop substrate `none` and the four additives that do not cover the panel → complete 15 × 20 grid, 3,600 rows |
+| Summit | skip the `TYPE` row of each case file, stack the four Reizman cases (385 rows), add `substrate_type` |
+| rxn_yields | xlsx → CSV, column names unchanged (5,760 rows × 16 columns) |
+| AI_RCP, bh-hte-ood | used as published |
+
+A different cut, a missing step or the raw files give different row counts, and
+therefore different Table 1 entries, ceilings and R² values.

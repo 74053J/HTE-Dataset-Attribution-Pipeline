@@ -1,0 +1,40 @@
+{
+  "_source": "scripts/legacy/Analysis_all_v16.py",
+  "_note": "Hyperparameters exported by AST; these are the exact module constants used to produce the reported results.",
+  "VIRTUAL_LIBRARY_PREVIEW_ROWS": 200000,
+  "STREAM_CHUNK_COMBOS": 200000,
+  "SURVIVOR_POOL_ROWS": 20000,
+  "ENSEMBLE_WEIGHT_POWER": 1.0,
+  "ENSEMBLE_MIN_WEIGHT_R2": 0.05,
+  "USE_TWO_STAGE_SCREENING": false,
+  "STAGE1_KEEP_ROWS": 50000,
+  "AUDIT_CONDITION_SCORES": true,
+  "USE_MULTIPROCESSING": true,
+  "N_WORKERS": 0,
+  "MAX_WORKERS": 16,
+  "PREDICT_BATCH_ROWS": 250000,
+  "TEST_SIZE": 0.2,
+  "HISTGB_MAX_ITER": 100,
+  "RF_N_ESTIMATORS": 100,
+  "PARALLEL_TOPK_PER_CHUNK": 20000,
+  "FIT_PREPROCESSING_ON_TRAIN_ONLY": true,
+  "CLIP_MEMBER_PREDICTIONS": true,
+  "ENSEMBLE_MAX_MODEL_GAP": 20.0,
+  "_split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "cv_folds": 5
+  },
+  "_models": [
+    "XGBoost",
+    "HistGB",
+    "GradientBoosting",
+    "RandomForest",
+    "MLP"
+  ],
+  "_encodings": [
+    "integer",
+    "one-hot",
+    "native categorical"
+  ]
+}

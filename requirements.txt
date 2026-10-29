@@ -1,0 +1,26 @@
+numpy>=2.0
+pandas>=2.2
+scikit-learn>=1.5
+# CPU-only wheel.  The PyPI `xgboost` package is compiled WITH CUDA, and every
+# process that calls fit()/predict() then creates a ~0.2 GB CUDA context even
+# with device='cpu' -- that is what made two concurrent runs crash with an
+# access violation.  `xgboost-cpu` ships the same module and the same numbers
+# without ever touching the GPU.
+xgboost-cpu>=2.1
+matplotlib>=3.9
+shap>=0.46
+scipy>=1.13
+rdkit>=2024.3
+PyYAML>=6.0
+pyarrow>=16.0
+python-docx>=1.1
+openpyxl>=3.1
+seaborn>=0.13
+tqdm>=4.60
+Pillow>=10.0
+
+# torch: needed only by scripts/build_table2.py (the GNN arm).  The default wheel pulls
+# ~2 GB of CUDA libraries; if you want the CPU build, reinstall it with
+#   pip install --no-cache-dir --force-reinstall torch --index-url https://download.pytorch.org/whl/cpu
+# A CUDA build also works -- it just downloads more.
+torch>=2.2

@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+*.log
+sandbox*
+
+_scratch/
+outputs/
+Output_SingleDataset/
+results/*
+figures/
+
+# v29: shipped inputs and local archives
+*.zip
+!results/legacy/
+!results/legacy/*.csv
+*.pid

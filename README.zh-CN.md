@@ -2,6 +2,8 @@
 
 **[English](README.md)** · 中文
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23772914.svg)](https://doi.org/10.5281/zenodo.23772914)
+
 投稿至 *Chemometrics and Intelligent Laboratory Systems* 的论文所配套的代码与结果表。
 
 ## 仓库内容

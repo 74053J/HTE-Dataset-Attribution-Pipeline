@@ -90,24 +90,22 @@ On the Zenodo record page:
 
 Both are on the record; copy both and keep them with the release notes.
 
-## 6. Add the badge to `README.md`
+## 6. The badge and the DOIs of this release
 
-The README already has a placeholder badge:
-
-```markdown
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-```
-
-Replace `XXXXXXX` with the **concept DOI** suffix (the badge then always points
-at the newest version):
+Both READMEs already carry the badge, pointing at the **concept DOI**
+(`10.5281/zenodo.23772914`), which always resolves to the newest version:
 
 ```markdown
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1234566.svg)](https://doi.org/10.5281/zenodo.1234566)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23772914.svg)](https://doi.org/10.5281/zenodo.23772914)
 ```
 
-If the badge must point at the `v1.0.0` snapshot instead, use the version DOI.
-Also remove the "placeholder" note below the badge and update `CITATION.cff`
-(`doi:` and `version:`) with the version DOI.
+The `v1.0.0` snapshot has its own **version DOI**, `10.5281/zenodo.23772915`,
+which is the one to quote when a specific snapshot must be pinned.  `CITATION.cff`
+carries that version DOI in its `doi:` field; bump it (and `version:`) when a new
+release is minted.
+
+For a later release only two things change: the new version DOI in `CITATION.cff`,
+and nothing in the badge (the concept DOI never changes).
 
 ## 7. Which DOI to cite where
 

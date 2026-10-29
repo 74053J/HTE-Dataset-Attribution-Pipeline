@@ -2,6 +2,8 @@
 
 **[中文说明](README.zh-CN.md)** · English
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23772914.svg)](https://doi.org/10.5281/zenodo.23772914)
+
 Code and result tables for the manuscript submitted to *Chemometrics and Intelligent
 Laboratory Systems*.
 

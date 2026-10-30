@@ -103,7 +103,7 @@ Both READMEs already carry the badge, pointing at the **concept DOI**
 |---|---|---|---|
 | `v1.0.0` | 2026-10-30 | `10.5281/zenodo.23772915` | code + the two mapping tables (82 files) |
 | `v1.0.1` | 2026-10-30 | `10.5281/zenodo.23795133` | five panel producers, results/figures archive, 79-check gate |
-| `v1.0.2` | 2026-10-30 | filled in at release | 13-dataset CI producer (`build_bootstrap_ci13.py`), 81-check gate, §3.2 intervals moved to the 13-dataset corpus, `release/results_and_figures_v1.0.2.zip` |
+| `v1.0.2` | 2026-10-30 | `10.5281/zenodo.23795585` | 13-dataset CI producer (`build_bootstrap_ci13.py`), 81-check gate, §3.2 intervals moved to the 13-dataset corpus, `release/results_and_figures_v1.0.2.zip` |
 
 `CITATION.cff` carries the concept DOI in its `doi:` field and the release number in
 `version:`; bump `version:` (and the archive file name) when a new release is minted.

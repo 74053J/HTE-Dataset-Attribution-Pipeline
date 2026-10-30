@@ -1,7 +1,7 @@
 {
   "title": "Yield prediction and condition recommendation on high-throughput experimentation datasets",
   "upload_type": "software",
-  "version": "1.0.2",
+  "version": "v1.0.2",
   "access_right": "open",
   "license": "MIT",
   "creators": [

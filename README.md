@@ -20,7 +20,7 @@ Laboratory Systems*.
 | `outputs/attrib13/` | **generated** by Step 9 (13 datasets x 12 cells) |
 | `outputs/c20_transfer_4donor/` | **generated** by Step 4 (48 cross-dataset transfer cells) |
 | `scripts/verify_numbers.py` | recomputes every number quoted in the manuscript from the shipped tables |
-| `release/results_and_figures_v1.0.1.zip` | the archived run: 29 result tables + 13 figures + `MANIFEST.sha256` |
+| `release/results_and_figures_v1.0.2.zip` | the archived run: 29 result tables + 13 figures + `MANIFEST.sha256` |
 | `docs/`, `data/` | method notes and the slot-mapping CSV |
 | `tests/` | unit tests |
 | `archive/single_dataset_full_benchmark.py` | the single-dataset pipeline path -- independent of the manuscript, documented at the end |
@@ -66,11 +66,11 @@ clean_results.bat         :: optional: wipe results\ and figures\ first
 run_all.bat               :: 12 steps, ~25 min, writes results\ and figures\
 ```
 
-`release/results_and_figures_v1.0.1.zip` holds the tables and figures that the
+`release/results_and_figures_v1.0.2.zip` holds the tables and figures that the
 manuscript was written from. Unzip it next to your run and compare:
 
 ```bat
-mkdir ref && tar -xf release\results_and_figures_v1.0.1.zip -C ref
+mkdir ref && tar -xf release\results_and_figures_v1.0.2.zip -C ref
 fc /b ref\results\table1_v18_final.csv results\table1_v18_final.csv
 ```
 

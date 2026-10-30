@@ -161,6 +161,13 @@ def main() -> int:
     check("capture mean CI high (%)", _b11.loc["mean_capture_percentile", "ci_high"] * 100, 93.4, 0.15)
     check("capture median CI low (%)", _b11.loc["median_capture_percentile", "ci_low"] * 100, 72.0, 0.15)
     check("capture median CI high (%)", _b11.loc["median_capture_percentile", "ci_high"] * 100, 100.2, 0.15)
+    # the manuscript now quotes the regenerated 13-dataset intervals
+    _b13 = _f("bootstrap_ci13.csv")
+    _b13 = _b13[_b13.dataset == "TABLE1_11"].set_index("statistic")
+    check("capture mean CI low, 13-set (%)",
+          _b13.loc["mean_capture_percentile", "ci_low"] * 100, 79.0, 0.15)
+    check("capture mean CI high, 13-set (%)",
+          _b13.loc["mean_capture_percentile", "ci_high"] * 100, 93.9, 0.15)
     pc = _f("protocol_cv.csv")
     check("protocol rows", len(pc), 3, 0)
     for proto, want in (("random", 0.757918), ("substrate-disjoint", -0.151465),

@@ -38,7 +38,7 @@ data/col_mappings.csv ┘
 | 2 | Fig. 1, Fig. 2, §3.1 | 156 grid cells, per-cell R²/RMSE, `capture mean 86.35 %`, `median 87.34 %`, `ρ(ceiling,R²)=+0.709`, `ρ(n_rows,R²)=−0.100` | `results/grid13_v18.csv` + `table1_v18_final.csv` | `build_grid_ceiling.py` | ✅ |
 | 3 | §3.1 model comparisons | paired Wilcoxon / BH-adjusted q values | `results/grid_stats.csv` | `build_grid_stats.py` | ✅ 4 checks |
 | 4 | Fig. 6, §3.3 enrichment | EF@10 = 93.9 %, EF@50 = 90.9 %, EF@1000 span 1.378–6.872 | `results/enrichment13.csv` | `build_enrichment.py` | ✅ 2 checks |
-| 5 | §3.2 confidence intervals | capture 95 % CI `79.4–93.4 %`, median CI `72.0–100.2 %` | `results/bootstrap_ci.csv` | `bootstrap_ci.py` | ✅ 1 check |
+| 5 | §3.2 confidence intervals | capture 95 % CI `79.0–93.9 %`, median CI `72.0–100.2 %` (13-dataset corpus) | `results/bootstrap_ci13.csv` | `build_bootstrap_ci13.py` | ✅ 3 checks |
 | 6 | §3.3 attribution shares | reactant_1 17.34, reactant_2 16.53, temperature 11.19, base 10.54, ligand 8.85, time 7.68, solvent 7.59, catalyst 7.45, additive 3.98, catalyst_eq 2.85 | `results/rebuilt_attrib12_long_v7.csv` | `build_attrib13.py` → `build_attrib_postprocess.py` | ✅ 6 checks |
 | 7 | §3.3 first-place counts | 50 / 46 / 30 / 11 of 156 cells, “87 % of the cells” | same table | same | ✅ 4 checks |
 | 8 | §3.3 encoding agreement | median ρ = 0.846, median L1 = 27.0 pp, 65 pairs | same table | same | ✅ 3 checks |

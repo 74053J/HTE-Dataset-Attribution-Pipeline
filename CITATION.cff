@@ -6,8 +6,8 @@ authors:
   - family-names: Wan
     given-names: Lingfeng
     affiliation: "Independent Researcher, Guangzhou, China"
-version: "1.0.0"
-doi: 10.5281/zenodo.23772915
+version: "1.0.1"
+doi: 10.5281/zenodo.23772914
 date-released: "2026-10-30"
 license: MIT
 repository-code: "https://github.com/74053J/HTE-Dataset-Attribution-Pipeline"

@@ -99,13 +99,16 @@ Both READMEs already carry the badge, pointing at the **concept DOI**
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23772914.svg)](https://doi.org/10.5281/zenodo.23772914)
 ```
 
-The `v1.0.0` snapshot has its own **version DOI**, `10.5281/zenodo.23772915`,
-which is the one to quote when a specific snapshot must be pinned.  `CITATION.cff`
-carries that version DOI in its `doi:` field; bump it (and `version:`) when a new
-release is minted.
+The `v1.0.0` snapshot has its own **version DOI**, `10.5281/zenodo.23772915`, and
+`v1.0.1` (2026-10-30, the version that carries `results/` + `figures/` in
+`release/results_and_figures_v1.0.1.zip` and the 79-check gate) has
+`10.5281/zenodo.23795133`.  `CITATION.cff` carries the concept DOI in its `doi:`
+field and the release number in `version:`; bump `version:` when a new release is
+minted.
 
-For a later release only two things change: the new version DOI in `CITATION.cff`,
-and nothing in the badge (the concept DOI never changes).
+For a later release only two things change: the version number in `CITATION.cff`
+and the new version DOI wherever a specific snapshot must be pinned -- nothing in
+the badge (the concept DOI never changes).
 
 ## 7. Which DOI to cite where
 

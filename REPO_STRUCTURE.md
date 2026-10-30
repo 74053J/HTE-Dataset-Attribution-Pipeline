@@ -74,7 +74,7 @@ thread count, and without that the XGBoost grid cells drift.
 | `virtual.py` | Virtual library: enumeration, loading grid, batched prediction, EI. |
 | `rank_real.py` | Route-1 ranking (`generate_figure6_direct_ranking`). |
 
-## `scripts/` - the producers (33 files)
+## `scripts/` - the producers (38 files)
 
 ### Data
 | File | Output |
@@ -121,6 +121,11 @@ thread count, and without that the XGBoost grid cells drift.
 | `bootstrap_ci.py` | bootstrap intervals for capture |
 | `features_morgan.py` | Morgan/descriptor features for the structural baselines |
 | `attrib_encoding_gap.py` | encoding-gap analysis |
+| `build_panel_signed_shap.py` | panel: mean/median signed SHAP per reactant level (Fig. 4) |
+| `build_panel_fig5_grid.py` | panel: ligand x base grid and marginals (Fig. 5) |
+| `build_panel_lastslot.py` | panel: last-ranked slot under three presence conventions + per-cell detail |
+| `build_panel_30splits.py` | panel: test-R2 spread over 30 fresh 80/20 splits |
+| `build_panel_rho_ci.py` | panel: bootstrap CIs for rho(ceiling, R2) and rho(rows, R2) |
 
 ## `tests/` - equivalence against `archive/` (7 files)
 

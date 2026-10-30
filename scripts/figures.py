@@ -167,9 +167,14 @@ PANEL_INSET_PX = 4                       # inset of the stamp from the bitmap co
 PANEL_LABEL = {                          # only figures that carry a letter today
     "fig1a": "(a)",
     "fig1b": "(b)",
+    # the paper2 layout writes this panel as "fig3a_shares"; the old "fig3a" key
+    # never matched, so Figure 3(a) shipped without its letter (fixed 2026-10-30)
+    "fig3a_shares": "(a)",
     "fig3a": "(a)",
     "fig3b": "(b)",
     "fig6a": "(a)",
+    # Figure 8(a) was missing from this table entirely (fixed 2026-10-30)
+    "fig8a_acquisition": "(a)",
     "fig8b_backup_loading": "(b)",
     "fig3b_ranks": "(b)",
     "fig4a_reactant1": "(a)",

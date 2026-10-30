@@ -15,7 +15,8 @@ Laboratory Systems*.
 | `archive/single_dataset_full_benchmark.py` | the second pipeline path: single-dataset, end-to-end (see the last section) |
 | `scripts/figures.py` | renders every manuscript figure (450 dpi, Times New Roman) |
 | `scripts/figures_paper2.py`, `scripts/tables.py` | composite panels and result tables |
-| `results/` | **generated** by `run_all.bat` (Step 1-11); the shipped package does not carry it |
+| `scripts/build_panel_*.py` | the five appendix-panel producers: signed SHAP per level, Fig. 5 ligand x base grid, last-ranked slot (three conventions), 30-split spread, and the two rho bootstrap intervals |
+| `results/` | **generated** by `run_all.bat` (Step 1-11, plus the panel tables in Step 9b); the shipped package does not carry it |
 | `outputs/attrib13/` | **generated** by Step 9 (13 datasets x 12 cells) |
 | `outputs/c20_transfer_4donor/` | **generated** by Step 4 (48 cross-dataset transfer cells) |
 | `scripts/verify_numbers.py` | recomputes every number quoted in the manuscript from the shipped tables |
@@ -46,6 +47,12 @@ pip install -r requirements.txt
 python scripts/figures.py            # all manuscript figures
 python scripts/build_attrib13.py --tag A --per-dataset   # attribution table
 python scripts/tables.py             # result tables
+python scripts/build_panel_signed_shap.py   # appendix panel tables (Step 9b of run_all)
+python scripts/build_panel_fig5_grid.py
+python scripts/build_panel_lastslot.py
+python scripts/build_panel_30splits.py
+python scripts/build_panel_rho_ci.py --statistic ceiling
+python scripts/build_panel_rho_ci.py --statistic size --append
 python scripts/verify_numbers.py     # check every manuscript number
 python tests/run_equivalence.py      # package-vs-pipeline equivalence tests
 ```

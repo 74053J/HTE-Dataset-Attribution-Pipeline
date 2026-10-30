@@ -53,6 +53,11 @@ data/col_mappings.csv ┘
 | 17 | §3.6 unseen reactants | 5,829 unseen reactant-1 rows, R²/MAE/ρ | `results/unseen_reactants.csv` | `build_unseen_reactants.py` | ✅ 2 checks |
 | 18 | aggregate ledger (json checks) | the same capture/R²/ρ values re-stated | `outputs/final_numbers/final_numbers_v2.json` | `build_final_numbers.py` | ✅ 6 checks |
 | 19 | every figure | the 12 PNGs | `figures/*.png` | `figures_paper2.py` (+ `figures.py` for the backup panel) | synced by `sync_figures_to_docx.py` |
+| 20 | §3.4 signed SHAP (Fig. 4) | per-level mean/median signed SHAP, e.g. 6-chloronicotinonitrile +22.5, 6-iodonicotinonitrile −14.3 | `results/panel_signed_shap.csv` | `build_panel_signed_shap.py` | Step 9b |
+| 21 | §3.4 ligand x base (Fig. 5) | cell 68.89 %, row mean 16.88 %, column mean 18.72 %, grand 9.63 %, coupling +42.9 | `results/panel_fig5_grid.csv`, `panel_fig5_margins.csv` | `build_panel_fig5_grid.py` | Step 9b |
+| 22 | §3.3 last-ranked slot | V1 (row present) 35 / 33 / 24; V2 (positive) 36 / 30 / 19; V3 (zero-filled) base_eq 84 | `results/panel_lastslot.csv`, `panel_lastslot_cells.csv`, `panel_lastslot_meta.csv` | `build_panel_lastslot.py` | Step 9b |
+| 23 | §3.1 split stability | test-R² SD 0.007–0.050 on the eleven files >1,000 rows; 0.071 / 0.258 on the two Summit screens | `results/panel_30splits.csv`, `panel_30splits_summary.csv` | `build_panel_30splits.py` | Step 9b |
+| 24 | §3.2 both rho intervals | ρ(ceiling,R²) 0.7091 [0.1667, 0.9899]; ρ(rows,R²) −0.1000 [−0.7011, 0.6716]; three sensitivity rows each | `results/rho_ci.csv` | `build_panel_rho_ci.py` (ceiling + size --append) | Step 9b |
 
 ### 1.3 Known soft spots (stated plainly)
 

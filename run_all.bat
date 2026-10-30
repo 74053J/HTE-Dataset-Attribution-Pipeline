@@ -123,6 +123,21 @@ if errorlevel 1 goto :fail
 if errorlevel 1 goto :fail
 
 echo ============================================================
+echo  Step 9b/12  appendix panel tables (five producers, ~2 min)
+echo ============================================================
+%PY% scripts\build_panel_signed_shap.py
+if errorlevel 1 goto :fail
+%PY% scripts\build_panel_fig5_grid.py
+if errorlevel 1 goto :fail
+%PY% scripts\build_panel_lastslot.py
+if errorlevel 1 goto :fail
+%PY% scripts\build_panel_30splits.py
+if errorlevel 1 goto :fail
+%PY% scripts\build_panel_rho_ci.py --statistic ceiling
+if errorlevel 1 goto :fail
+%PY% scripts\build_panel_rho_ci.py --statistic size --append
+if errorlevel 1 goto :fail
+echo ============================================================
 echo  Step 10/12  render the paper figures
 echo ============================================================
 %PY% scripts\figures_paper2.py

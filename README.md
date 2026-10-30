@@ -20,6 +20,7 @@ Laboratory Systems*.
 | `outputs/attrib13/` | **generated** by Step 9 (13 datasets x 12 cells) |
 | `outputs/c20_transfer_4donor/` | **generated** by Step 4 (48 cross-dataset transfer cells) |
 | `scripts/verify_numbers.py` | recomputes every number quoted in the manuscript from the shipped tables |
+| `release/results_and_figures_v1.0.1.zip` | the archived run: 29 result tables + 13 figures + `MANIFEST.sha256` |
 | `docs/`, `data/` | method notes and the slot-mapping CSV |
 | `tests/` | unit tests |
 | `archive/single_dataset_full_benchmark.py` | the single-dataset pipeline path -- independent of the manuscript, documented at the end |
@@ -56,6 +57,27 @@ python scripts/build_panel_rho_ci.py --statistic size --append
 python scripts/verify_numbers.py     # check every manuscript number
 python tests/run_equivalence.py      # package-vs-pipeline equivalence tests
 ```
+
+## Reproducing the archived run from scratch
+
+```bat
+fetch_datasets.bat        :: download and prepare the 13 datasets
+clean_results.bat         :: optional: wipe results\ and figures\ first
+run_all.bat               :: 12 steps, ~25 min, writes results\ and figures\
+```
+
+`release/results_and_figures_v1.0.1.zip` holds the tables and figures that the
+manuscript was written from. Unzip it next to your run and compare:
+
+```bat
+mkdir ref && tar -xf release\results_and_figures_v1.0.1.zip -C ref
+fc /b ref\results\table1_v18_final.csv results\table1_v18_final.csv
+```
+
+28 of the 29 tables reproduced byte for byte in the full re-run of 2026-10-30
+(the six `panel_*` tables are fixed-seed and deterministic). The exception is
+`graph_baseline.csv`: its three GNN rows are trained per seed and carry a seed
+spread of 0.022 / 0.013 / 0.006 R² across runs.
 
 ## Data
 

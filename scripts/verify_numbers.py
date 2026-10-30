@@ -184,6 +184,29 @@ def main() -> int:
     check("attrib13_long rows", len(al), 1392, 0)
     check("attrib13_long cells", al.groupby(["dataset", "model", "encoding"]).ngroups, 156, 0)
 
+    print("\n[7b] 13-dataset intervals and the appendix panels")
+    b13 = _f("bootstrap_ci13.csv")
+    check("bootstrap_ci13 rows", len(b13), 27, 0)
+    check("bootstrap_ci13 datasets",
+          b13[b13["dataset"] != "TABLE1_11"]["dataset"].nunique(), 11, 0)
+    _bh = b13[(b13["dataset"] == "bh-hte-ood_BH") & (b13["statistic"] == "ceiling")]
+    check("bootstrap_ci13 bh ceiling",
+          float(_bh["estimate"].iloc[0]) if len(_bh) else float("nan"), 0.657925, 1e-6)
+    rc = _f("rho_ci.csv")
+    check("rho_ci rows", len(rc), 8, 0)
+    _p = rc[rc["role"] == "primary"].set_index("statistic")
+    check("rho_ci ceiling rho", float(_p.loc["ceiling", "rho"]), 0.709091, 1e-6)
+    check("rho_ci ceiling CI low", float(_p.loc["ceiling", "ci_low"]), 0.166667, 1e-6)
+    check("rho_ci size rho", float(_p.loc["size", "rho"]), -0.100000, 1e-6)
+    check("rho_ci size CI high", float(_p.loc["size", "ci_high"]), 0.671559, 1e-6)
+    ls = _f("panel_lastslot.csv")
+    v1 = ls[ls["convention"] == "V1_row_present"].sort_values("cells_last", ascending=False)
+    check("panel_lastslot V1 top1", int(v1["cells_last"].iloc[0]), 35, 0)
+    check("panel_lastslot V1 top2", int(v1["cells_last"].iloc[1]), 33, 0)
+    check("panel_lastslot V1 top3", int(v1["cells_last"].iloc[2]), 24, 0)
+    v1sum = int(v1["cells_last"].sum())
+    check("panel_lastslot V1 total cells", v1sum, 156, 0)
+
     print("\n[8] held-out real chemistry (section 3.4)")
     ha, hc = RES / "heldout_acquisition.csv", RES / "heldout_calibration.csv"
     if ha.is_file() and hc.is_file():

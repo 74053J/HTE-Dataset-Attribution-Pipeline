@@ -15,6 +15,7 @@ figures/
 
 # v29: shipped inputs and local archives
 *.zip
+!release/*.zip
 !results/legacy/
 !results/legacy/*.csv
 *.pid

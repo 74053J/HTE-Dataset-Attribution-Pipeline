@@ -58,6 +58,7 @@ data/col_mappings.csv ┘
 | 22 | §3.3 last-ranked slot | V1 (row present) 35 / 33 / 24; V2 (positive) 36 / 30 / 19; V3 (zero-filled) base_eq 84 | `results/panel_lastslot.csv`, `panel_lastslot_cells.csv`, `panel_lastslot_meta.csv` | `build_panel_lastslot.py` | Step 9b |
 | 23 | §3.1 split stability | test-R² SD 0.007–0.050 on the eleven files >1,000 rows; 0.071 / 0.258 on the two Summit screens | `results/panel_30splits.csv`, `panel_30splits_summary.csv` | `build_panel_30splits.py` | Step 9b |
 | 24 | §3.2 both rho intervals | ρ(ceiling,R²) 0.7091 [0.1667, 0.9899]; ρ(rows,R²) −0.1000 [−0.7011, 0.6716]; three sensitivity rows each | `results/rho_ci.csv` | `build_panel_rho_ci.py` (ceiling + size --append) | Step 9b |
+| 25 | §3.2 intervals on the 13-dataset corpus | per-dataset ceiling/capture for the 11 datasets with a ceiling (`bh-hte-ood_BH` ceiling 0.657925) plus the `TABLE1_11` aggregate rows | `results/bootstrap_ci13.csv` | `build_bootstrap_ci13.py` | Step 9b |
 
 ### 1.3 Known soft spots (stated plainly)
 

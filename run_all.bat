@@ -137,6 +137,8 @@ if errorlevel 1 goto :fail
 if errorlevel 1 goto :fail
 %PY% scripts\build_panel_rho_ci.py --statistic size --append
 if errorlevel 1 goto :fail
+%PY% scripts\build_bootstrap_ci13.py
+if errorlevel 1 goto :fail
 echo ============================================================
 echo  Step 10/12  render the paper figures
 echo ============================================================
